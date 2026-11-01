@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group = 'dev.owel'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jline:jline-terminal:3.30.17'
+    implementation 'org.jline:jline-reader:3.30.17'
+    implementation 'org.glassfish.tyrus:tyrus-client:2.2.2'
+    implementation 'org.glassfish.tyrus:tyrus-container-grizzly-client:2.2.2'
+    implementation(platform('org.glassfish.grizzly:grizzly-bom:4.1.0')) {
+        because 'Tyrus의 전이 의존성 Grizzly의 CVE-2026-12606과 CVE-2024-45687을 수정한 버전을 사용합니다'
+    }
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.21.8'
+
+    testImplementation 'org.spockframework:spock-core:2.4-groovy-4.0'
+    testImplementation 'net.bytebuddy:byte-buddy:1.18.16'
+    testImplementation 'org.objenesis:objenesis:3.6'
+}
+
+test {
+    useJUnitPlatform()
+}
