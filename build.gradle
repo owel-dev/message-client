@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'application'
 }
 
 group = 'dev.owel'
@@ -29,6 +30,10 @@ dependencies {
     testImplementation 'org.spockframework:spock-core:2.4-groovy-4.0'
     testImplementation 'net.bytebuddy:byte-buddy:1.18.16'
     testImplementation 'org.objenesis:objenesis:3.6'
+}
+
+application {
+    mainClass = 'dev.owel.messagesystem.MessageClient'
 }
 
 test {
